@@ -20,7 +20,7 @@ public class Visualizacion {
     @GeneratedValue (strategy=GenerationType.UUID)
     private  UUID id;
 
-    @Column (name="date", nullable = false, unique = false)
+    @Column (name="fecha_visualizacion", nullable = false, unique = false)
     private LocalDate fecha_visualizacion;
 
     @Column (name="completado", nullable = false, unique = false)
