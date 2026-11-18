@@ -47,7 +47,7 @@ public class VideoServicio {
     //metodo para modificar
 
     public Video modificar(UUID id, Video datos){
-        Optional<Usuario> videoBuscado=this.repositorio.findById(id);
+        Optional<Video> videoBuscado=this.repositorio.findById(id);
        if (!videoBuscado.isPresent()) {
             throw new  ResponseStatusException(HttpStatus.BAD_REQUEST,"Id no encontrado");
         }else {
@@ -67,6 +67,17 @@ public class VideoServicio {
     }
     
     //metodo para eliminar
+
+     public boolean eliminar(UUID id){
+         Optional<Video> videoBuscado=this.repositorio.findById(id);
+        if (!videoBuscado.isPresent()) {
+            throw new  ResponseStatusException(HttpStatus.BAD_REQUEST,"Id no encontrado");
+        }else {
+            this.repositorio.deleteById(id);
+            return true;
+        }
+
+    }
 
     //metodo para buscar categoria
 
