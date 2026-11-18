@@ -1,10 +1,15 @@
 package com.example.NutreAPP.services;
-
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.NutreAPP.repositories.IUsuarioRepositorio;
 import com.example.NutreAPP.models.Usuario;
+import java.util.UUID;
+import java.util.List;
 
 @Service 
 public class UsuarioServicio {
@@ -23,9 +28,23 @@ public class UsuarioServicio {
          return this.repositorio.save(datos);
     }
 
-    //metodo para buscar por ID
+    //Método para buscar por ID
 
-    //metodo para buscar todos
+    public Usuario buscarPorId(UUID id){
+        Optional<Usuario> usuarioBuscado=this.repositorio.findById(id);
+        if (!usuarioBuscado.isPresent()) {
+            throw new  ResponseStatusException(HttpStatus.BAD_REQUEST,"Id no encontrado");
+        }else {
+            return usuarioBuscado.get();
+        }
+
+    }
+
+    //Método para buscar todos
+
+    public List<Usuario>buscarTodos(){
+        return this.repositorio.findAll();
+    }
 
     //metodo para modificar
     

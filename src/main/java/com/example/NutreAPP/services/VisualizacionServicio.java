@@ -1,8 +1,15 @@
 package com.example.NutreAPP.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.example.NutreAPP.models.Video;
 import com.example.NutreAPP.models.Visualizacion;
 import com.example.NutreAPP.repositories.IVisualizacionRepositorio;
 
@@ -22,11 +29,24 @@ public class VisualizacionServicio {
  }
 
 
-    //metodo para guardar
-
     //metodo para buscar por ID
 
-    //metodo para buscar todos
+     public Visualizacion buscarPorId(UUID id){
+        Optional<Visualizacion> visualizacionBuscada=this.repositorio.findById(id);
+        if (!visualizacionBuscada.isPresent()) {
+            throw new  ResponseStatusException(HttpStatus.BAD_REQUEST,"Id no encontrado");
+        }else {
+            return visualizacionBuscada.get();
+        }
+
+    }
+
+    //Método para buscar todos
+
+
+        public List<Visualizacion>buscarTodos(){
+        return this.repositorio.findAll();
+    }
 
     //metodo para modificar
     
