@@ -46,7 +46,28 @@ public class UsuarioServicio {
         return this.repositorio.findAll();
     }
 
-    //metodo para modificar
+    //Método para modificar/ actualizar
+
+    public Usuario modificar(UUID id, Usuario datos){
+        Optional<Usuario> usuarioBuscado=this.repositorio.findById(id);
+       if (!usuarioBuscado.isPresent()) {
+            throw new  ResponseStatusException(HttpStatus.BAD_REQUEST,"Id no encontrado");
+        }else {
+            //1. PRECARGAR LA INFO QUE ESXISTE ACTUALMENTE EN LA BASE DE DATOS
+            Usuario usuarioEncontrado=usuarioBuscado.get();
+
+            // 2. ESPACIO PARA MODIFICAR SOLO LAS PROPIEDADES PERMITIDAS 
+            usuarioEncontrado.setNombre(datos.getNombre());
+            usuarioEncontrado.setRol(datos.getRol());
+
+            //3. ESPACIO PARA VOLVER A GUARDAR EL USUARIO QUE SE ACABA DE MODIFICAR
+
+            return this.repositorio.save(usuarioEncontrado);
+            
+        }
+
+    }
+
     
     //metodo para eliminar
 

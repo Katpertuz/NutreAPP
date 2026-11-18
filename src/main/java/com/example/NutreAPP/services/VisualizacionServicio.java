@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.NutreAPP.models.Usuario;
 import com.example.NutreAPP.models.Video;
 import com.example.NutreAPP.models.Visualizacion;
 import com.example.NutreAPP.repositories.IVisualizacionRepositorio;
@@ -48,7 +49,9 @@ public class VisualizacionServicio {
         return this.repositorio.findAll();
     }
 
-    //metodo para modificar
+    //metodo para modificar/ actualizar(SIN METODO DE MODIFICAR)
+
+    
     
     //metodo para eliminar
 

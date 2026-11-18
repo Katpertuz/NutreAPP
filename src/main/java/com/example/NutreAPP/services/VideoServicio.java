@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.example.NutreAPP.models.Usuario;
 import com.example.NutreAPP.models.Video;
 import com.example.NutreAPP.repositories.IVideoRepositorio;
 
@@ -43,6 +45,26 @@ public class VideoServicio {
     }
 
     //metodo para modificar
+
+    public Video modificar(UUID id, Video datos){
+        Optional<Usuario> videoBuscado=this.repositorio.findById(id);
+       if (!videoBuscado.isPresent()) {
+            throw new  ResponseStatusException(HttpStatus.BAD_REQUEST,"Id no encontrado");
+        }else {
+            //1. PRECARGAR LA INFO QUE ESXISTE ACTUALMENTE EN LA BASE DE DATOS
+            Video videoEncontrado=videoBuscado.get();
+
+            // 2. ESPACIO PARA MODIFICAR SOLO LAS PROPIEDADES PERMITIDAS 
+            videoEncontrado.setTitulo(datos.getTitulo());
+            videoEncontrado.setDescripcion(datos.getDescripcion());
+
+            //3. ESPACIO PARA VOLVER A GUARDAR EL USUARIO QUE SE ACABA DE MODIFICAR
+
+            return this.repositorio.save(videoEncontrado);
+            
+        }
+
+    }
     
     //metodo para eliminar
 
