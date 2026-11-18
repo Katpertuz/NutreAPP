@@ -1,8 +1,27 @@
 package com.example.NutreAPP.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.NutreAPP.repositories.IUsuarioRepositorio;
+import com.example.NutreAPP.models.Usuario;
+
+@Service 
 public class UsuarioServicio {
 
-    //metodo para guardar
+
+    //para cocinar necesito la receta
+    //Para programar los servicios, necesito los repositorios
+
+    //INYECCIÓN DE DEPENDENCIAS
+    @Autowired 
+    private IUsuarioRepositorio repositorio;
+
+    //metodo para guardar un usuario
+
+    public Usuario guardar(Usuario datos){
+         return this.repositorio.save(datos);
+    }
 
     //metodo para buscar por ID
 

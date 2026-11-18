@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.NutreAPP.models.Usuario;
+
 import com.example.NutreAPP.models.Video;
 import com.example.NutreAPP.models.helpers.Categoria;
 
