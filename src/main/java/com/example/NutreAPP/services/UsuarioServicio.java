@@ -5,12 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.example.NutreAPP.repositories.IUsuarioRepositorio;
 import com.example.NutreAPP.validations.UsuarioValidacion;
 import com.example.NutreAPP.models.Usuario;
 import java.util.UUID;
-import java.util.List;
+
 
 @Service 
 public class UsuarioServicio {

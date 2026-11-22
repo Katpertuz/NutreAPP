@@ -1,12 +1,9 @@
 package com.example.NutreAPP.models;
-
 import java.util.List;
 import java.util.UUID;
-
 import com.example.NutreAPP.models.helpers.Departamento;
 import com.example.NutreAPP.models.helpers.Rol;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -46,7 +43,7 @@ public class Usuario {
     @Column (name="contraseña", nullable = false, unique = false)
     private String constrasenia_hash;
 
-    //Creando relaciones
+//Creando relaciones
     @OneToMany(mappedBy = "usuario") 
     @JsonManagedReference(value = "usuario-visualizacion")
     private List<Visualizacion> visualizaciones;
@@ -125,13 +122,5 @@ public class Usuario {
     public void setConstrasenia_hash(String constrasenia_hash) {
         this.constrasenia_hash = constrasenia_hash;
     }
-
-    
-    
-
-
-   
-
-
 
 }

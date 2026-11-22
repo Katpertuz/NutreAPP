@@ -14,19 +14,19 @@ import com.example.NutreAPP.models.helpers.Rol;
 @Repository 
 public interface IUsuarioRepositorio extends JpaRepository <Usuario, UUID> {
 
-    //Consultas prefabricadas(Buscar)
+  //Consultas prefabricadas(Buscar)
 
-    //1. Buscar un usuario, asociado a un departamento y a un rol específico
+  //1. Buscar un usuario, asociado a un departamento y a un rol específico
    List <Usuario>findByDepartamentoAndRol(String departamento, String rol);
 
-     //2. Buscar un usuario por su correo
+  //2. Buscar un usuario por su correo
    Optional<Usuario>findByCorreo(String correo);
 
 
-      //3. Buscar un usuario por rol en orden ascendete 
+  //3. Buscar un usuario por rol en orden ascendete 
    List<Usuario>findByRolOrderByNombreAsc(String rol);
 
-     //4. Buscar si esxiste correo
+  //4. Buscar si esxiste correo
    Boolean existsByCorreo(String correo);
 
 }
