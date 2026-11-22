@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.NutreAPP.models.helpers.Categoria;
 import com.example.NutreAPP.repositories.IVideoRepositorio;
 
 @Component 
@@ -25,7 +26,7 @@ public class VideoValidacion {
  }
 
 
- // V2. La URL es obligatoria y debe empezar por "http://" o "https://".    
+ // 2. La URL es obligatoria y debe empezar por "http://" o "https://".    
  // Pista: url.startsWith("https://")
  
     public void validarUrl(String url){
@@ -38,6 +39,15 @@ public class VideoValidacion {
     }
 
 }
+
+// 3. La categoria es obligatoria (no puede llegar null).  
+    public void validarCategoria(Categoria categoria){
+        if (categoria==null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La categoría es obligatoria");
+            
+        }
+
+    }
 
 }
 
