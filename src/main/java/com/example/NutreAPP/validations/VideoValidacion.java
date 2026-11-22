@@ -49,5 +49,20 @@ public class VideoValidacion {
 
     }
 
+// 4. La descripcion es opcional, pero si viene no puede
+// superar 500 caracteres.  
+    public void validarDescripcion(String descripcion){
+        if (descripcion!=null && descripcion.trim().length()>500) {
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La descripción no puede superar 500 caracteres");
+
+            
+        }
+
+    }
+// 5. No pueden existir dos videos con la misma URL.               
+//     Al CREAR: usar existsByUrl(url)
+//     Al MODIFICAR: usar la consulta SQL 5 de abajo (igual que
+//     contarCorreoEnOtroUsuario en Usuario)
+
 }
 
