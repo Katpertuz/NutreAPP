@@ -34,5 +34,12 @@ public class Visualizacionvalidacion {
     }
 
  }
+ // V3. El campo completado es obligatorio (true o false, no null).
+    public void validarCompletado(Boolean completado){
+        if (completado==null) { throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Campo obligatorio(true o false)");
+            
+        }
+
+    } 
     
 }
