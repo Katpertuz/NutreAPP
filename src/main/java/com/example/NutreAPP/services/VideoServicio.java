@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import com.example.NutreAPP.models.Video;
 import com.example.NutreAPP.repositories.IVideoRepositorio;
+import com.example.NutreAPP.validations.UsuarioValidacion;
+import com.example.NutreAPP.validations.VideoValidacion;
 
 
 @Service 
@@ -17,10 +19,17 @@ public class VideoServicio {
     @Autowired 
     private IVideoRepositorio repositorio;
 
+     @Autowired
+    private VideoValidacion validador;
+
 
 //Método para guardar un video
 
     public Video guardar (Video datos){
+        this.validador.validarTitulo(datos.getTitulo());
+        this.validador.validarCategoria(datos.getCategoria());
+        this.validador.validarDescripcion(datos.getDescripcion());
+        this.validador.validarUrl(datos.getUrl());
         return this.repositorio.save(datos);
     }
 
