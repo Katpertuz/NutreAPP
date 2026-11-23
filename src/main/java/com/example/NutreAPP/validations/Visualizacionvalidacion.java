@@ -21,9 +21,18 @@ public class Visualizacionvalidacion {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La fecha de visualización es obligatoria");
 
     }
-
-
  }
 
+
+ // V2. La fecha NO puede ser futura (nadie ve un video mañana).  
+//     Pista: fecha.isAfter(LocalDate.now())
+
+ public void validarFechaFutura(LocalDate fechaVisualizacion){
+    if(fechaVisualizacion!=null && fechaVisualizacion.isAfter(LocalDate.now())){
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La fecha de visualización no puede ser superior a la fecha actual");
+
+    }
+
+ }
     
 }
