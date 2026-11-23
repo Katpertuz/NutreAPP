@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.example.NutreAPP.models.Video;
 import com.example.NutreAPP.models.helpers.Categoria;
@@ -20,6 +22,12 @@ public interface IVideoRepositorio extends JpaRepository<Video, UUID>{
    Optional<Video> findByUrl(String url);
 
    List<Video> findByTituloAndCategoria(String titulo, Categoria categoria);
+
+   Boolean existsByUrl(String url);
+
+   @Query(value = "SELECT COUNT(*) FROM Videos WHERE url = :url AND id != :id", nativeQuery = true)
+    Long contarUrlEnOtroVideo(@Param("url") String url, @Param("id") UUID id);
+
 
 
 }

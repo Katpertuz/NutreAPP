@@ -1,4 +1,6 @@
 package com.example.NutreAPP.validations;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -64,5 +66,18 @@ public class VideoValidacion {
 //     Al MODIFICAR: usar la consulta SQL 5 de abajo (igual que
 //     contarCorreoEnOtroUsuario en Usuario)
 
+// 5A. Al CREAR 
+public void validarUrlUnicaAlCrear(String url){
+     if (this.repositorio.existsByUrl(url)) 
+       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La URL entregada ya se encuentra registrada en otro video" ); 
+     }
+
+
+// 5B. Al MODIFICAR 
+public void validarUrlUnicaAlModificar(String url, UUID id) {
+     if (this.repositorio.contarUrlEnOtroVideo(url, id) > 0)
+         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La URL entregada ya se encuentra registrada en otro video" ); 
+        
+    }
 }
 
