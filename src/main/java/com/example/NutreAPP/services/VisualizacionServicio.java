@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import com.example.NutreAPP.models.Visualizacion;
 import com.example.NutreAPP.repositories.IVisualizacionRepositorio;
+import com.example.NutreAPP.validations.Visualizacionvalidacion;
+
 
 @Service 
 public class VisualizacionServicio {
@@ -17,9 +19,18 @@ public class VisualizacionServicio {
 @Autowired 
  private IVisualizacionRepositorio repositorio;
 
+ 
+@Autowired 
+private Visualizacionvalidacion validador;
 
 //Método para guardar una visualización
  public Visualizacion guardar(Visualizacion datos){
+    this.validador.validarCompletado(datos.getCompletado());
+    this.validador.validarFechaFutura(datos.getFecha_visualizacion());
+    this.validador.validarFechaVisualizacion(datos.getFecha_visualizacion());
+    this.validador.validarUsuarioExiste(datos.getId());
+    this.validador.validarVideoExiste(datos.getId());
+
     return this.repositorio.save(datos);
 
  }
